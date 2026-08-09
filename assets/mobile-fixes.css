@@ -1,0 +1,299 @@
+/* ============================================
+   Tennis Sportswear Store — Mobile Fixes
+   Sense Theme Responsive Overrides
+   ============================================ */
+
+/* --- Hamburger Menu --- */
+.drawer--left .drawer__header {
+  background-color: var(--tennis-green, #0B5E42);
+  padding: 16px 20px;
+}
+
+.drawer--left .drawer__close-button {
+  color: #FFFFFF !important;
+  font-size: 24px;
+}
+
+.drawer--left .drawer__inner {
+  background-color: #FFFFFF;
+}
+
+.drawer--left .drawer__nav {
+  padding: 8px 0;
+}
+
+.drawer--left .drawer__nav-item {
+  border-bottom: 1px solid rgba(11, 94, 66, 0.08);
+}
+
+.drawer--left .drawer__nav-link {
+  color: var(--tennis-green-dark, #062D20) !important;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 20px;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.drawer--left .drawer__nav-link:hover,
+.drawer--left .drawer__nav-link:active {
+  background-color: rgba(11, 94, 66, 0.05);
+  color: var(--tennis-green, #0B5E42) !important;
+}
+
+.drawer--left .drawer__nav-link--active {
+  color: var(--tennis-green, #0B5E42) !important;
+  font-weight: 700;
+  border-left: 3px solid var(--tennis-accent, #F5C518);
+}
+
+/* --- Mobile Nav Toggle Button --- */
+.mobile-nav-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Touch-Friendly Buttons --- */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .button,
+  .product-form__submit,
+  .cart__checkout,
+  .site-header__icon {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .product-card__quick-add {
+    min-height: 44px;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Ensure form inputs are touchable */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px !important; /* Prevent iOS zoom on focus */
+  }
+}
+
+/* --- Product Grid Responsive --- */
+@media screen and (max-width: 1024px) {
+  .grid--uniform .grid__item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .grid--uniform .grid__item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Single column for very small screens */
+  .grid__item .product-card {
+    max-width: 100%;
+  }
+}
+
+/* --- Hero Section Mobile --- */
+@media screen and (max-width: 768px) {
+  .hero-content {
+    padding: 24px 16px !important;
+  }
+
+  .hero-headline {
+    font-size: 28px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-subheadline {
+    font-size: 16px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .hero-cta {
+    padding: 12px 28px !important;
+    font-size: 14px !important;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+/* --- Collection Page Mobile --- */
+@media screen and (max-width: 768px) {
+  .collection-hero__title {
+    font-size: 28px !important;
+  }
+
+  .collection-hero__description {
+    font-size: 14px !important;
+  }
+
+  /* Filter toggle button */
+  .collection-filters__filter {
+    min-height: 44px;
+  }
+
+  /* Sort dropdown */
+  .collection-filters__sort {
+    min-height: 44px;
+    font-size: 15px;
+  }
+}
+
+/* --- Product Page Mobile --- */
+@media screen and (max-width: 768px) {
+  .product-single__title {
+    font-size: 22px !important;
+  }
+
+  .product-single__price {
+    font-size: 24px !important;
+  }
+
+  .product-form__input--pill {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .product-single__description {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* --- Cart Page Mobile --- */
+@media screen and (max-width: 768px) {
+  .cart__row {
+    padding: 12px 0;
+  }
+
+  .cart__image-wrapper {
+    max-width: 80px;
+  }
+
+  .cart__checkout {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .cart__update-button,
+  .cart__continue-button {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  /* Quantity selector touch-friendly */
+  .js-qty__num {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .js-qty__adjust {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* --- Footer Mobile --- */
+@media screen and (max-width: 768px) {
+  .site-footer {
+    padding: 32px 16px;
+    text-align: center;
+  }
+
+  .site-footer__linklist-item {
+    padding: 8px 0;
+  }
+
+  .site-footer__linklist-item a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-footer__newsletter-input {
+    min-height: 44px;
+    font-size: 15px;
+  }
+}
+
+/* --- Search Page Mobile --- */
+@media screen and (max-width: 768px) {
+  .search__input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .search__button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* --- Account / Login Page Mobile --- */
+@media screen and (max-width: 768px) {
+  input[type="email"],
+  input[type="password"] {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .form-vertical .btn {
+    width: 100%;
+  }
+}
+
+/* --- General Mobile Spacing --- */
+@media screen and (max-width: 768px) {
+  .page-width {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-header__title {
+    font-size: 24px;
+  }
+}
+
+/* --- Prevent horizontal scroll on mobile --- */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Fix Sense theme drawer z-index issues --- */
+.drawer {
+  z-index: 9999;
+}
+
+.drawer__overlay {
+  z-index: 9998;
+}
