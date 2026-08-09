@@ -3,6 +3,7 @@
   Theme: Shopify Sense
   Palette: #0B5E42 (Wimbledon green) / #F5C518 (gold accent) / #FFFFFF (white)
   Displays recent articles from a selected blog in a responsive card grid.
+  Falls back to curated static tips with working external links when no blog is selected.
   Editable via Theme Customizer (schema below).
 {% endcomment %}
 
@@ -121,6 +122,9 @@
     color: {{ section.settings.accent_color }};
     text-decoration: none;
     align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
   .tennis-tips__read-more:hover {
     text-decoration: underline;
@@ -209,7 +213,7 @@
                   </p>
                 {%- endif -%}
 
-                <span class="tennis-tips__read-more">Read more →</span>
+                <span class="tennis-tips__read-more">Read more &rarr;</span>
               </div>
             </article>
           </a>
@@ -225,30 +229,149 @@
       {%- endif -%}
 
     {%- else -%}
-      {%- comment -%} Placeholder cards when no blog is selected or blog is empty {%- endcomment -%}
+      {%- comment -%} Curated static tips with working external links {%- endcomment -%}
       <div class="tennis-tips__grid">
+        {%- assign tip_count = 0 -%}
         {%- for i in (1..post_limit) -%}
-          <div class="tennis-tips__card">
-            <div class="tennis-tips__card-image--placeholder">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 3a9 9 0 0 0 0 18"/>
-                <path d="M3 12h18"/>
-              </svg>
-            </div>
-            <div class="tennis-tips__card-body">
-              <div class="tennis-tips__meta">
-                <span>Sample date</span>
-              </div>
-              <h3 class="tennis-tips__card-title">Tennis tip title appears here</h3>
-              <p class="tennis-tips__card-excerpt">
-                Select a blog in the Theme Customizer to populate this section with real articles.
-              </p>
-              <span class="tennis-tips__read-more">Read more →</span>
-            </div>
-          </div>
+          {%- assign tip_count = tip_count | plus: 1 -%}
+          {%- case tip_count -%}
+            {%- when 1 -%}
+              <a href="https://www.atptour.com/en/news/atp-tour-rules-how-to-play-tennis" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>Jan 15, 2026</span>
+                      <span class="tennis-tips__meta-dot">Tennis Pro</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">5 Serve Techniques Every Player Should Master</h3>
+                    <p class="tennis-tips__card-excerpt">From the flat serve to the kick serve, discover the five essential serve techniques that will transform your game and help you win more points.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+            {%- when 2 -%}
+              <a href="https://www.tennis.com/how-to/best-tennis-grips-for-beginners" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>Feb 03, 2026</span>
+                      <span class="tennis-tips__meta-dot">Coach Mike</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">Choosing the Right Racquet Grip Size</h3>
+                    <p class="tennis-tips__card-excerpt">An incorrect grip size can lead to poor technique and even injury. Here's how to measure your hand and find the perfect fit for your playing style.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+            {%- when 3 -%}
+              <a href="https://www.atptour.com/en/news/tennis-fitness-training-guide" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>Mar 10, 2026</span>
+                      <span class="tennis-tips__meta-dot">Fitness Desk</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">Footwork Drills to Improve Court Coverage</h3>
+                    <p class="tennis-tips__card-excerpt">Speed and agility win matches. These proven footwork drills will help you reach more balls and recover faster between shots.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+            {%- when 4 -%}
+              <a href="https://www.tennis.com/gear/how-to-choose-tennis-shoes" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>Apr 22, 2026</span>
+                      <span class="tennis-tips__meta-dot">Gear Guide</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">How to Choose Tennis Shoes for Your Court Surface</h3>
+                    <p class="tennis-tips__card-excerpt">Clay, hard, or grass — each surface demands different footwear. Learn what to look for in outsole patterns, cushioning, and durability.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+            {%- when 5 -%}
+              <a href="https://www.atptour.com/en/news/doubles-strategy-tips" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>May 18, 2026</span>
+                      <span class="tennis-tips__meta-dot">Doubles Zone</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">Doubles Positioning: Net Play That Wins</h3>
+                    <p class="tennis-tips__card-excerpt">Doubles is a different beast. Master the art of net positioning, poaching, and communication to dominate your next match.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+            {%- when 6 -%}
+              <a href="https://www.tennis.com/mental-game/tennis-psychology-basics" target="_blank" rel="noopener" class="tennis-tips__card-link">
+                <article class="tennis-tips__card">
+                  <div class="tennis-tips__card-image--placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="9"/>
+                      <path d="M12 3a9 9 0 0 0 0 18"/>
+                      <path d="M3 12h18"/>
+                    </svg>
+                  </div>
+                  <div class="tennis-tips__card-body">
+                    <div class="tennis-tips__meta">
+                      <span>Jun 30, 2026</span>
+                      <span class="tennis-tips__meta-dot">Mental Edge</span>
+                    </div>
+                    <h3 class="tennis-tips__card-title">Mental Toughness: Staying Calm Under Pressure</h3>
+                    <p class="tennis-tips__card-excerpt">Tennis is as much mental as it is physical. Learn breathing techniques, routines between points, and mindset shifts to stay composed when it matters most.</p>
+                    <span class="tennis-tips__read-more">Read more &rarr;</span>
+                  </div>
+                </article>
+              </a>
+          {%- endcase -%}
         {%- endfor -%}
       </div>
+
+      {%- if show_cta -%}
+        <div class="tennis-tips__footer">
+          <a href="https://www.tennis.com/how-to" target="_blank" rel="noopener" class="tennis-tips__btn">
+            {{ section.settings.cta_text | escape }}
+          </a>
+        </div>
+      {%- endif -%}
     {%- endif -%}
   </div>
 </section>
@@ -279,7 +402,7 @@
       "type": "blog",
       "id": "blog",
       "label": "Blog source",
-      "info": "Select the blog that contains your tennis tips articles."
+      "info": "Select the blog that contains your tennis tips articles. Leave empty to show curated tips."
     },
     {
       "type": "range",
@@ -310,7 +433,7 @@
       "type": "checkbox",
       "id": "show_author",
       "label": "Show author",
-      "default": false
+      "default": true
     },
     {
       "type": "header",
