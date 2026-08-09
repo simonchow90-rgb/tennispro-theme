@@ -1,0 +1,259 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-banner-{{ section.id }} {
+    position: relative;
+    min-height: {{ section.settings.hero_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #062D20;
+  }
+
+  .hero-banner-{{ section.id }} .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner-{{ section.id }} .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .hero-banner-{{ section.id }} .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: {{ section.settings.text_alignment }};
+    padding: 40px 24px;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .hero-banner-{{ section.id }} .hero-headline {
+    font-size: {{ section.settings.headline_size }}px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-subheadline {
+    font-size: {{ section.settings.subheadline_size }}px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 32px 0;
+    line-height: 1.4;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-banner-{{ section.id }} .hero-cta {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text_color }};
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .hero-banner-{{ section.id }} .hero-cta:hover {
+    background-color: {{ section.settings.button_hover_bg }};
+    color: {{ section.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(11, 94, 66, 0.4);
+  }
+
+  @media screen and (max-width: 768px) {
+    .hero-banner-{{ section.id }} {
+      min-height: {{ section.settings.mobile_height }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-headline {
+      font-size: {{ section.settings.headline_size | divided_by: 1.5 | round }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-subheadline {
+      font-size: {{ section.settings.subheadline_size | divided_by: 1.3 | round }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-content {
+      padding: 32px 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="hero-banner-{{ section.id }}">
+  {%- if section.settings.background_image != blank -%}
+    {{ section.settings.background_image | image_url: width: 2000 | image_tag: class: 'hero-bg', loading: 'lazy' }}
+  {%- else -%}
+    <div class="hero-bg" style="background: linear-gradient(135deg, #0B5E42 0%, #062D20 100%);"></div>
+  {%- endif -%}
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    {%- if section.settings.headline != blank -%}
+      <h1 class="hero-headline">{{ section.settings.headline | escape }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheadline != blank -%}
+      <p class="hero-subheadline">{{ section.settings.subheadline | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hero-cta">
+        {{ section.settings.button_text | escape }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Recommended: 2000px wide, tennis court or sport lifestyle image"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Game. Set. Shop."
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Premium Tennis Apparel & Gear"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "default": 40,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "label": "Desktop Height (px)",
+      "min": 300,
+      "max": 900,
+      "step": 50,
+      "default": 600,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile Height (px)",
+      "min": 200,
+      "max": 600,
+      "step": 50,
+      "default": 400,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline Font Size (px)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 52,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheadline_size",
+      "label": "Subheadline Font Size (px)",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#F5C518"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#062D20"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#D4A800"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#062D20"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
