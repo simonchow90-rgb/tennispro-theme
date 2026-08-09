@@ -107,7 +107,7 @@
   {%- if section.settings.background_image != blank -%}
     {{ section.settings.background_image | image_url: width: 2000 | image_tag: class: 'hero-bg', loading: 'lazy' }}
   {%- else -%}
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0B5E42 0%, #062D20 100%);"></div>
+    {{ 'hero-banner-bg.png' | asset_url | image_tag: class: 'hero-bg', loading: 'lazy', width: 1024, height: 576 }}
   {%- endif -%}
 
   <div class="hero-overlay"></div>
