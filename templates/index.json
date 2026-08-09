@@ -45,7 +45,7 @@
       "type": "tennis-tips-section",
       "settings": {
         "title": "Tennis Tips & Stories",
-        "heading_size": "h2",
+        "heading_size": 34,
         "description": "Expert advice to elevate your game",
         "blog": "News",
         "posts_to_show": 3,
